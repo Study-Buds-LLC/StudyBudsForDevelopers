@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Study Buds | Onboarding</title>
+  </head>
+  <body>
+    <main class="container">
+      <section class="hero form-wrap">
+        <p class="eyebrow">Study Buds</p>
+        <h1>Onboarding</h1>
+        <p>Tell us a bit about you.</p>
+
+        <form id="onboarding-form" class="form">
+          <label class="field-label" for="user-role">What do you do?</label>
+          <input
+            id="user-role"
+            class="field-input"
+            type="text"
+            required
+            placeholder="Frontend Developer"
+          />
+
+          <label class="field-label" for="user-age">How old are you?</label>
+          <input
+            id="user-age"
+            class="field-input"
+            type="number"
+            min="1"
+            required
+            placeholder="25"
+          />
+          <p id="age-error" class="form-error" aria-live="polite"></p>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary" type="submit">
+              Finish Onboarding
+            </button>
+            <a class="btn btn-ghost" href="index.html">Back to Home</a>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      const roleInput = document.getElementById("user-role");
+      const ageInput = document.getElementById("user-age");
+      const ageError = document.getElementById("age-error");
+
+      roleInput.value = localStorage.getItem("sbUserRole") || "";
+      ageInput.value = localStorage.getItem("sbUserAge") || "";
+
+      function validateAge() {
+        const ageValue = Number(ageInput.value.trim());
+        if (ageInput.value.trim() !== "" && ageValue <= 1) {
+          ageInput.setCustomValidity("Babies can't be developers");
+          ageError.textContent = "Babies can't be developers";
+          return false;
+        }
+        if (ageInput.value.trim() !== "" && ageValue > 99) {
+          ageInput.setCustomValidity("Are you Immortal?");
+          ageError.textContent = "Are you Immortal?";
+          return false;
+        }
+        ageInput.setCustomValidity("");
+        ageError.textContent = "";
+        return true;
+      }
+
+      ageInput.addEventListener("input", validateAge);
+
+      document
+        .getElementById("onboarding-form")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
+          if (!validateAge()) {
+            ageInput.reportValidity();
+            return;
+          }
+          localStorage.setItem("sbUserRole", roleInput.value.trim());
+          localStorage.setItem("sbUserAge", ageInput.value.trim());
+          if (!localStorage.getItem("sbUserName")) {
+            localStorage.setItem("sbUserName", "Developer");
+          }
+          window.location.href = "dashboard.html";
+        });
+    </script>
+  </body>
+</html>

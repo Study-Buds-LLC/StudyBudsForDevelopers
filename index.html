@@ -1,0 +1,151 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Study Buds for Developers</title>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#">Study Buds</a>
+      <nav class="menu">
+        <a href="#paths">Learning Paths</a>
+        <a href="#tools">Tools</a>
+        <a href="#start">Getting Started</a>
+        <a href="#captcha">sbCaptcha</a>
+      </nav>
+      <div class="auth-actions">
+        <div class="user-chip" aria-label="Current user">
+          <div class="user-chip-avatar" id="home-avatar">U</div>
+          <span id="home-username">Developer</span>
+        </div>
+        <a class="btn btn-ghost" href="login.html">Sign In</a>
+        <a class="btn btn-primary" href="signup.html">Create Account</a>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <p class="eyebrow">Developer learning platform</p>
+        <h1>Access Study Buds and keep your learning momentum.</h1>
+        <p>
+          One place for structured learning paths, practical tools, mentor
+          support, and developer community.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="dashboard.html">Open Dashboard</a>
+          <a class="btn btn-ghost" href="catalog.html">Browse Courses</a>
+        </div>
+      </section>
+
+      <section id="paths">
+        <h2>Learning paths</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Frontend Engineer</h3>
+            <p>React, TypeScript, state management, and UI architecture.</p>
+            <a href="path-frontend.html">Open Path</a>
+          </article>
+          <article class="card">
+            <h3>Backend Engineer</h3>
+            <p>API design, databases, authentication, and scalability.</p>
+            <a href="path-backend.html">Open Path</a>
+          </article>
+          <article class="card">
+            <h3>DevOps and Cloud</h3>
+            <p>CI/CD, Docker, observability, and cloud deployments.</p>
+            <a href="path-devops.html">Open Path</a>
+          </article>
+          <article class="card">
+            <h3>Interview Prep</h3>
+            <p>Algorithms, system design, and timed mock interviews.</p>
+            <a href="path-interview.html">Open Path</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="tools">
+        <h2>Platform tools</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Code Playground</h3>
+            <p>Test snippets and save reusable templates.</p>
+            <a href="playground.html">Open Tool</a>
+          </article>
+          <article class="card">
+            <h3>Progress Tracker</h3>
+            <p>Track milestones, weekly goals, and current streak.</p>
+            <a href="progress.html">Open Tool</a>
+          </article>
+          <article class="card">
+            <h3>Mentor Sessions</h3>
+            <p>Book live code reviews and office hours.</p>
+            <a href="mentors.html">Book Session</a>
+          </article>
+          <article class="card">
+            <h3>Community Forum</h3>
+            <p>Share projects, ask questions, and collaborate.</p>
+            <a href="community.html">Join Forum</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="start" class="steps">
+        <h2>Get started in 3 steps</h2>
+        <ol>
+          <li>Create your account and complete your developer profile.</li>
+          <li>Pick one path and set your weekly learning goal.</li>
+          <li>Join a study group and schedule your first mentor session.</li>
+        </ol>
+      </section>
+
+      <section id="captcha" class="captcha">
+        <h2>sbCaptcha</h2>
+        <p>
+          Protect your own site from bot traffic using this embeddable widget.
+        </p>
+        <textarea class="hidden-input" id="captcha-code" readonly>
+<link href='https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&family=Roboto:wght@400;500&display=swap' rel='stylesheet' /><style>.sb-card{width:300px;background:#fff;border:1px solid #dadce0;border-radius:8px;padding:14px;font-family:Roboto,sans-serif}.sb-row{display:flex;align-items:center;gap:12px}.sb-box{width:24px;height:24px;border:2px solid #80868b;border-radius:3px;display:grid;place-items:center}.sb-label{font-size:14px;color:#202124}</style><div class='sb-card'><div class='sb-row'><div class='sb-box'>OK</div><span class='sb-label'>I am not a robot</span></div></div></textarea
+        >
+        <button id="copy-btn" class="btn btn-primary" type="button">
+          Copy sbCaptcha Code
+        </button>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Study Buds | Learn faster with focused developer workflows.</p>
+    </footer>
+
+    <script>
+      const copyBtn = document.getElementById("copy-btn");
+      const homeUser = document.getElementById("home-username");
+      const homeAvatar = document.getElementById("home-avatar");
+      const code = document.getElementById("captcha-code");
+      const defaultText = copyBtn.textContent;
+      const userName = localStorage.getItem("sbUserName") || "Developer";
+      homeUser.textContent = userName;
+      homeAvatar.textContent = userName.charAt(0).toUpperCase();
+
+      copyBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(code.value);
+          copyBtn.textContent = "Copied!";
+          copyBtn.disabled = true;
+          setTimeout(() => {
+            copyBtn.textContent = defaultText;
+            copyBtn.disabled = false;
+          }, 1300);
+        } catch (err) {
+          copyBtn.textContent = "Copy failed";
+          setTimeout(() => {
+            copyBtn.textContent = defaultText;
+          }, 1400);
+        }
+      });
+    </script>
+  </body>
+</html>
+
+

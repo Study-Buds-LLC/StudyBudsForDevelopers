@@ -1,0 +1,46 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Study Buds | Dashboard</title>
+  </head>
+  <body>
+    <main class="container">
+      <section class="hero">
+        <p class="eyebrow">Study Buds</p>
+        <h1 id="welcome-title">Welcome, Developer</h1>
+        <p>Your active courses, goals, and profile summary.</p>
+      </section>
+
+      <section class="profile-card">
+        <h2>Profile</h2>
+        <div class="profile-row">
+          <div class="avatar">U</div>
+          <div>
+            <p><strong>Username:</strong> <span id="profile-name">Developer</span></p>
+            <p><strong>Role:</strong> <span id="profile-role">Developer</span></p>
+            <p><strong>Age:</strong> <span id="profile-age">Not set</span></p>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="index.html">Back to Home</a>
+          <a class="btn btn-ghost" href="onboarding.html">Edit Onboarding</a>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const name = localStorage.getItem("sbUserName") || "Developer";
+      const role = localStorage.getItem("sbUserRole") || "Developer";
+      const age = localStorage.getItem("sbUserAge") || "Not set";
+
+      document.getElementById("welcome-title").textContent = `Welcome, ${name}`;
+      document.getElementById("profile-name").textContent = name;
+      document.getElementById("profile-role").textContent = role;
+      document.getElementById("profile-age").textContent = age;
+      document.querySelector(".avatar").textContent = name.charAt(0).toUpperCase();
+    </script>
+  </body>
+</html>

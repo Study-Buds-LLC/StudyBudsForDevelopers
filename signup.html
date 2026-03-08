@@ -1,0 +1,44 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Study Buds | Create Account</title>
+  </head>
+  <body>
+    <main class="container">
+      <section class="hero form-wrap">
+        <p class="eyebrow">Study Buds</p>
+        <h1>Create Account</h1>
+        <p>Fake signup flow: submit and continue to onboarding questions.</p>
+
+        <form id="signup-form" class="form">
+          <label class="field-label" for="signup-username">Username</label>
+          <input id="signup-username" class="field-input" type="text" required placeholder="new_dev" />
+
+          <label class="field-label" for="signup-email">Email</label>
+          <input id="signup-email" class="field-input" type="email" required placeholder="name@example.com" />
+
+          <label class="field-label" for="signup-password">Password</label>
+          <input id="signup-password" class="field-input" type="password" required placeholder="********" />
+
+          <div class="hero-actions">
+            <button class="btn btn-primary" type="submit">Continue to Onboarding</button>
+            <a class="btn btn-ghost" href="index.html">Back to Home</a>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      const signupForm = document.getElementById("signup-form");
+      signupForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const username = document.getElementById("signup-username").value.trim();
+        localStorage.setItem("sbUserName", username || "Developer");
+        window.location.href = "onboarding.html";
+      });
+    </script>
+  </body>
+</html>

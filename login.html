@@ -1,0 +1,47 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Study Buds | Sign In</title>
+  </head>
+  <body>
+    <main class="container">
+      <section class="hero form-wrap">
+        <p class="eyebrow">Study Buds</p>
+        <h1>Sign In</h1>
+        <p>Fake login flow: enter any values to continue.</p>
+
+        <form id="login-form" class="form">
+          <label class="field-label" for="login-username">Username</label>
+          <input id="login-username" class="field-input" type="text" required placeholder="dev_user" />
+
+          <label class="field-label" for="login-password">Password</label>
+          <input id="login-password" class="field-input" type="password" required placeholder="********" />
+
+          <div class="hero-actions">
+            <button class="btn btn-primary" type="submit">Sign In</button>
+            <a class="btn btn-ghost" href="index.html">Back to Home</a>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      const loginForm = document.getElementById("login-form");
+      loginForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const username = document.getElementById("login-username").value.trim();
+        localStorage.setItem("sbUserName", username || "Developer");
+        if (!localStorage.getItem("sbUserRole")) {
+          localStorage.setItem("sbUserRole", "Developer");
+        }
+        if (!localStorage.getItem("sbUserAge")) {
+          localStorage.setItem("sbUserAge", "Not set");
+        }
+        window.location.href = "dashboard.html";
+      });
+    </script>
+  </body>
+</html>
